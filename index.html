@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>PLASTIC-BRAIN_FRETE</title>
+
+    <!-- TAILWIND -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- FUENTE -->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: #050505;
+            color: white;
+            font-family: "Inter", sans-serif;
+            overflow-x: hidden;
+        }
+
+
+        /* =========================================
+           FONDO
+        ========================================= */
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            background:
+                radial-gradient(
+                    circle at 50% 15%,
+                    rgba(163,230,53,.12),
+                    transparent 35%
+                );
+
+            z-index: -2;
+        }
+
+
+        /* GRID */
+
+        body::after {
+
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            background-image:
+                linear-gradient(
+                    rgba(255,255,255,.025) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,.025) 1px,
+                    transparent 1px
+                );
+
+            background-size: 50px 50px;
+
+            mask-image:
+                linear-gradient(
+                    to bottom,
+                    black,
+                    transparent 80%
+                );
+
+            z-index: -1;
+        }
+
+
+        /* =========================================
+           TEXTO OUTLINE
+        ========================================= */
+
+        .outline {
+
+            color: transparent;
+
+            -webkit-text-stroke:
+                1px rgba(255,255,255,.55);
+        }
+
+
+        /* =========================================
+           BOTONES / PROYECTOS
+        ========================================= */
+
+        .project {
+
+            position: relative;
+
+            width: 170px;
+            height: 170px;
+
+            border-radius: 999px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.12);
+
+            background:
+                radial-gradient(
+                    circle at 30% 20%,
+                    rgba(163,230,53,.08),
+                    #090909 65%
+                );
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 20px;
+
+            transition:
+                transform .3s ease,
+                border-color .3s ease,
+                box-shadow .3s ease,
+                background .3s ease;
+
+            text-decoration: none;
+
+            color: white;
+
+            overflow: hidden;
+        }
+
+
+        .project::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 80px;
+            height: 80px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(163,230,53,.08);
+
+            filter: blur(20px);
+
+            opacity: 0;
+
+            transition: .3s;
+        }
+
+
+        .project:hover {
+
+            transform:
+                translateY(-8px)
+                scale(1.04);
+
+            border-color:
+                rgba(163,230,53,.65);
+
+            box-shadow:
+                0 0 25px
+                rgba(163,230,53,.15),
+
+                0 0 80px
+                rgba(163,230,53,.05);
+        }
+
+
+        .project:hover::before {
+
+            opacity: 1;
+        }
+
+
+        /* ICONO */
+
+        .project-icon {
+
+            font-size: 34px;
+
+            margin-bottom: 10px;
+
+            position: relative;
+
+            z-index: 2;
+
+            filter:
+                grayscale(.2);
+        }
+
+
+        .project-name {
+
+            position: relative;
+
+            z-index: 2;
+
+            color: #a3e635;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing: .08em;
+
+            text-transform: uppercase;
+        }
+
+
+        .project-type {
+
+            position: relative;
+
+            z-index: 2;
+
+            color: #71717a;
+
+            font-size: 9px;
+
+            letter-spacing: .15em;
+
+            margin-top: 5px;
+
+            text-transform: uppercase;
+        }
+
+
+        /* =========================================
+           BOTON PRINCIPAL
+        ========================================= */
+
+        .main-button {
+
+            transition: .25s ease;
+        }
+
+
+        .main-button:hover {
+
+            transform:
+                translateY(-3px)
+                scale(1.03);
+
+            box-shadow:
+                0 0 35px
+                rgba(163,230,53,.35);
+        }
+
+
+        /* =========================================
+           LINEA
+        ========================================= */
+
+        .scan-line {
+
+            width: 100%;
+
+            height: 1px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    #a3e635,
+                    transparent
+                );
+
+            opacity: .4;
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 640px) {
+
+            .project {
+
+                width: 145px;
+                height: 145px;
+            }
+
+            .project-icon {
+
+                font-size: 28px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ==================================================
+     NAV
+================================================== -->
+
+<header
+    class="
+        fixed
+        top-0
+        left-0
+        right-0
+        z-50
+        bg-black/75
+        backdrop-blur-xl
+        border-b
+        border-white/10
+    "
+>
+
+    <div
+        class="
+            max-w-7xl
+            mx-auto
+            px-6
+            py-5
+            flex
+            items-center
+            justify-between
+        "
+    >
+
+        <a
+            href="#inicio"
+            class="
+                text-lime-400
+                font-black
+                tracking-tighter
+                text-xl
+            "
+        >
+            JEF//
+        </a>
+
+
+        <span
+            class="
+                text-[9px]
+                tracking-[.35em]
+                text-zinc-600
+                uppercase
+            "
+        >
+            Plastic Brain
+        </span>
+
+    </div>
+
+</header>
+
+
+
+<!-- ==================================================
+     HERO
+================================================== -->
+
+<main id="inicio">
+
+
+<section
+    class="
+        min-h-screen
+        flex
+        items-center
+        justify-center
+        px-6
+        pt-32
+        pb-24
+    "
+>
+
+
+    <div
+        class="
+            max-w-6xl
+            mx-auto
+            text-center
+            w-full
+        "
+    >
+
+
+        <!-- ETIQUETA -->
+
+        <div
+            class="
+                text-lime-400
+                text-[10px]
+                tracking-[.4em]
+                uppercase
+                mb-8
+            "
+        >
+
+            DIGITAL LABORATORY · 2026
+
+        </div>
+
+
+
+        <!-- TITULO -->
+
+        <h1
+            class="
+                text-5xl
+                sm:text-7xl
+                md:text-8xl
+                lg:text-9xl
+                font-black
+                tracking-[-.07em]
+                leading-[.82]
+            "
+        >
+
+            PLASTIC-
+
+            <br>
+
+            <span class="outline">
+                BRAIN
+            </span>
+
+            <br>
+
+            <span class="text-lime-400">
+                _FRETE
+            </span>
+
+        </h1>
+
+
+
+        <!-- DESCRIPCION -->
+
+        <p
+            class="
+                max-w-xl
+                mx-auto
+                mt-10
+                text-zinc-500
+                text-sm
+                md:text-base
+                leading-relaxed
+            "
+        >
+
+            Código, interfaces, música, juegos,
+            experimentos digitales y cosas que
+            probablemente no necesitaban existir.
+
+        </p>
+
+
+
+        <!-- BOTON GITHUB -->
+
+        <div class="mt-10">
+
+            <a
+                href="https://github.com/jefrete"
+                target="_blank"
+
+                class="
+                    main-button
+                    inline-flex
+                    items-center
+                    gap-3
+                    bg-lime-400
+                    text-black
+                    px-7
+                    py-3
+                    rounded-full
+                    font-black
+                    text-sm
+                "
+            >
+
+                <span>⌘</span>
+
+                GITHUB / JEFRETE
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     DIVISOR
+================================================== -->
+
+<div class="max-w-6xl mx-auto px-6">
+
+    <div class="scan-line"></div>
+
+</div>
+
+
+
+<!-- ==================================================
+     PROYECTOS
+================================================== -->
+
+<section
+    class="
+        px-6
+        py-28
+    "
+>
+
+
+    <div class="max-w-6xl mx-auto">
+
+
+        <!-- TITULO -->
+
+        <div class="mb-16 text-center">
+
+            <p
+                class="
+                    text-lime-400
+                    text-[10px]
+                    tracking-[.35em]
+                    uppercase
+                    mb-4
+                "
+            >
+                PROJECT ARCHIVE
+            </p>
+
+            <h2
+                class="
+                    text-4xl
+                    md:text-6xl
+                    font-black
+                    tracking-tight
+                "
+            >
+                MIS ARTEFACTOS
+            </h2>
+
+        </div>
+
+
+
+        <!-- ==========================================
+             GRID CIRCULAR
+        =========================================== -->
+
+        <div
+            class="
+                flex
+                flex-wrap
+                justify-center
+                gap-6
+                md:gap-8
+            "
+        >
+
+
+            <!-- GITHUB -->
+
+            <a
+                class="project"
+                href="https://github.com/jefrete"
+                target="_blank"
+            >
+
+                <div class="project-icon">
+                    ◉
+                </div>
+
+                <div class="project-name">
+                    GitHub
+                </div>
+
+                <div class="project-type">
+                    Code
+                </div>
+
+            </a>
+
+
+
+            <!-- CARD PRESENTATION -->
+
+            <a
+                class="project"
+                href="https://jefrete.github.io/Card-Presentation/"
+                target="_blank"
+            >
+
+                <div class="project-icon">
+                    ◈
+                </div>
+
+                <div class="project-name">
+                    Card
+                </div>
+
+                <div class="project-type">
+                    Presentation
+                </div>
+
+            </a>
+
+
+
+            <!-- JEF TECH -->
+
+            <a
+                class="project"
+                href="https://jef-tech.vercel.app/"
+                target="_blank"
+            >
+
+                <div class="project-icon">
+                    ⚡
+                </div>
+
+                <div class="project-name">
+                    JEF TECH
+                </div>
+
+                <div class="project-type">
+                    Tech
+                </div>
+
+            </a>
+
+
+
+            <!-- PLASTIC BRAIN -->
+
+            <a
+                class="project"
+                href="https://github.com/jefrete/plasticbrain"
+                target="_blank"
+            >
+
+                <div class="project-icon">
+                    🧠
+                </div>
+
+                <div class="project-name">
+                    Plastic Brain
+                </div>
+
+                <div class="project-type">
+                    GitHub
+                </div>
+
+            </a>
+
+
+
+            <!-- RULETA CINE -->
+
+            <a
+                class="project"
+                href="https://github.com/jefrete/ruleta-cine"
+                target="_blank"
+            >
+
+                <div class="project-icon">
+                    🎬
+                </div>
+
+                <div class="project-name">
+                    Ruleta Cine
+                </div>
+
+                <div class="project-type">
+                    Cinema
+                </div>
+
+            </a>
+
+
+
+            <!-- JEF DIGITAL -->
+
+            <a
+                class="project"
+                href="https://app-google-jefdigital.vercel.app/"
+                target="_blank"
+            >
+
+                <div class="project-icon">
+                    ◉
+                </div>
+
+                <div class="project-name">
+                    JEF Digital
+                </div>
+
+                <div class="project-type">
+                    App
+                </div>
+
+            </a>
+
+
+
+            <!-- SUR LINK -->
+
+            <a
+                class="project"
+                href="https://sur-link-sma.vercel.app/"
+                target="_blank"
+            >
+
+                <div class="project-icon">
+                    📡
+                </div>
+
+                <div class="project-name">
+                    Sur Link
+                </div>
+
+                <div class="project-type">
+                    Network
+                </div>
+
+            </a>
+
+
+
+            <!-- CPem7 -->
+
+            <a
+                class="project"
+                href="https://jefrete.github.io/informatica-cpem7/"
+                target="_blank"
+            >
+
+                <div class="project-icon">
+                    💻
+                </div>
+
+                <div class="project-name">
+                    CPem7
+                </div>
+
+                <div class="project-type">
+                    Informatica
+                </div>
+
+            </a>
+
+
+
+            <!-- INTRO JEF -->
+
+            <a
+                class="project"
+                href="https://intro-jef-tech.vercel.app/"
+                target="_blank"
+            >
+
+                <div class="project-icon">
+                    🚀
+                </div>
+
+                <div class="project-name">
+                    Intro JEF
+                </div>
+
+                <div class="project-type">
+                    Landing
+                </div>
+
+            </a>
+
+
+
+            <!-- SILABA -->
+
+            <a
+                class="project"
+                href="https://jefrete.github.io/COMPLETA_LA_SILABA/"
+                target="_blank"
+            >
+
+                <div class="project-icon">
+                    🔤
+                </div>
+
+                <div class="project-name">
+                    Completa
+                    la Sílaba
+                </div>
+
+                <div class="project-type">
+                    Game
+                </div>
+
+            </a>
+
+
+
+            <!-- EMPAREJAR -->
+
+            <a
+                class="project"
+                href="https://jefrete.github.io/JUEGO_EMPAREJAR/"
+                target="_blank"
+            >
+
+                <div class="project-icon">
+                    🧩
+                </div>
+
+                <div class="project-name">
+                    Emparejar
+                </div>
+
+                <div class="project-type">
+                    Game
+                </div>
+
+            </a>
+
+
+
+            <!-- ZION -->
+
+            <a
+                class="project"
+                href="https://zion-turnero-smpf.vercel.app/"
+                target="_blank"
+            >
+
+                <div class="project-icon">
+                    ⏱
+                </div>
+
+                <div class="project-name">
+                    Zion
+                </div>
+
+                <div class="project-type">
+                    Turnero
+                </div>
+
+            </a>
+
+
+
+            <!-- PATHOS -->
+
+            <a
+                class="project"
+                href="https://turnero-pathos.vercel.app/"
+                target="_blank"
+            >
+
+                <div class="project-icon">
+                    ◌
+                </div>
+
+                <div class="project-name">
+                    Pathos
+                </div>
+
+                <div class="project-type">
+                    Turnero
+                </div>
+
+            </a>
+
+
+
+            <!-- VIXION -->
+
+            <a
+                class="project"
+                href="https://jefrete.github.io/vixion_tv/"
+                target="_blank"
+            >
+
+                <div class="project-icon">
+                    📺
+                </div>
+
+                <div class="project-name">
+                    Vixion TV
+                </div>
+
+                <div class="project-type">
+                    Media
+                </div>
+
+            </a>
+
+
+
+            <!-- PELICULAS -->
+
+            <a
+                class="project"
+                href="https://jefrete.github.io/nuevas.peliculas.buenas/"
+                target="_blank"
+            >
+
+                <div class="project-icon">
+                    🍿
+                </div>
+
+                <div class="project-name">
+                    Películas
+                </div>
+
+                <div class="project-type">
+                    Cinema
+                </div>
+
+            </a>
+
+
+
+            <!-- TERE -->
+
+            <a
+                class="project"
+                href="https://jefrete.github.io/tere-min/"
+                target="_blank"
+            >
+
+                <div class="project-icon">
+                    ✦
+                </div>
+
+                <div class="project-name">
+                    Tere Min
+                </div>
+
+                <div class="project-type">
+                    Web
+                </div>
+
+            </a>
+
+
+
+            <!-- MAPA ARMONICO -->
+
+            <a
+                class="project"
+                href="https://jefrete.github.io/mapa-armonico/"
+                target="_blank"
+            >
+
+                <div class="project-icon">
+                    🎹
+                </div>
+
+                <div class="project-name">
+                    Mapa Armónico
+                </div>
+
+                <div class="project-type">
+                    Music
+                </div>
+
+            </a>
+
+
+
+            <!-- MUSIC GROUND CONTROL -->
+
+            <a
+                class="project"
+                href="https://jefrete.github.io/music-ground-control/"
+                target="_blank"
+            >
+
+                <div class="project-icon">
+                    🎛
+                </div>
+
+                <div class="project-name">
+                    Ground Control
+                </div>
+
+                <div class="project-type">
+                    Music
+                </div>
+
+            </a>
+
+
+
+            <!-- ARMONIA REDUNDANTE -->
+
+            <a
+                class="project"
+                href="https://jefrete.github.io/armonia.redundante/"
+                target="_blank"
+            >
+
+                <div class="project-icon">
+                    ∿
+                </div>
+
+                <div class="project-name">
+                    Armonía
+                    Redundante
+                </div>
+
+                <div class="project-type">
+                    Music
+                </div>
+
+            </a>
+
+
+
+            <!-- ARGENTINA DEPORTES -->
+
+            <a
+                class="project"
+                href="https://argentina-deportes.vercel.app/"
+                target="_blank"
+            >
+
+                <div class="project-icon">
+                    ⚽
+                </div>
+
+                <div class="project-name">
+                    Argentina
+                    Deportes
+                </div>
+
+                <div class="project-type">
+                    Sports
+                </div>
+
+            </a>
+
+
+
+            <!-- SUPER MASIVO -->
+
+            <a
+                class="project"
+                href="https://jefrete.github.io/Super-Masivo-Bro/"
+                target="_blank"
+            >
+
+                <div class="project-icon">
+                    ☄
+                </div>
+
+                <div class="project-name">
+                    Super Masivo
+                </div>
+
+                <div class="project-type">
+                    Experiment
+                </div>
+
+            </a>
+
+
+
+            <!-- TETRIS -->
+
+            <a
+                class="project"
+                href="https://jefrete.github.io/Tetris_Letras/"
+                target="_blank"
+            >
+
+                <div class="project-icon">
+                    ▦
+                </div>
+
+                <div class="project-name">
+                    Tetris Letras
+                </div>
+
+                <div class="project-type">
+                    Game
+                </div>
+
+            </a>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     FRASE
+================================================== -->
+
+<section
+    class="
+        px-6
+        py-32
+        text-center
+        bg-zinc-950
+    "
+>
+
+    <div class="max-w-4xl mx-auto">
+
+        <p
+            class="
+                text-lime-400
+                text-[10px]
+                tracking-[.4em]
+                uppercase
+                mb-8
+            "
+        >
+            SYSTEM STATUS
+        </p>
+
+
+        <h2
+            class="
+                text-4xl
+                md:text-6xl
+                font-black
+                leading-tight
+            "
+        >
+
+            NO ES UN PORTFOLIO.
+
+            <br>
+
+            <span class="outline">
+                ES UN LABORATORIO.
+            </span>
+
+        </h2>
+
+
+        <p
+            class="
+                text-zinc-600
+                mt-8
+                text-sm
+            "
+        >
+            23 artefactos · código · música · juegos · web
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     CONTACTO
+================================================== -->
+
+<section
+    class="
+        px-6
+        py-28
+        text-center
+    "
+>
+
+    <p
+        class="
+            text-lime-400
+            text-[10px]
+            tracking-[.35em]
+            uppercase
+            mb-6
+        "
+    >
+        OPEN CHANNEL
+    </p>
+
+
+    <h2
+        class="
+            text-5xl
+            md:text-7xl
+            font-black
+            tracking-tight
+        "
+    >
+        JEF//
+    </h2>
+
+
+    <div class="mt-10">
+
+        <a
+            href="https://github.com/jefrete"
+            target="_blank"
+
+            class="
+                main-button
+                inline-block
+                border
+                border-lime-400
+                text-lime-400
+                px-8
+                py-4
+                rounded-full
+                font-bold
+                text-sm
+            "
+        >
+
+            EXPLORAR GITHUB →
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+</main>
+
+
+
+<!-- ==================================================
+     FOOTER
+================================================== -->
+
+<footer
+    class="
+        border-t
+        border-white/10
+        py-10
+        text-center
+    "
+>
+
+    <p
+        class="
+            text-zinc-700
+            text-[10px]
+            tracking-[.3em]
+            uppercase
+        "
+    >
+
+        PLASTIC-BRAIN_FRETE
+
+        ·
+
+        DIGITAL LABORATORY
+
+    </p>
+
+</footer>
+
+
+
+</body>
+
+</html>
